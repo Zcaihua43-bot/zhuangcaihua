@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庄才华 - 王者荣耀游戏策划实习生求职</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gameDark: '#0a0a12',
+                        gameRed: '#e6212a',
+                        gameGold: '#ffc107',
+                        gameGray: '#1e1e2f',
+                    },
+                    fontFamily: {
+                        game: ['Inter', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+@layer utilities {
+    .section-height {
+        min-height: 100vh;
+    }
+    .text-shadow {
+        text-shadow: 0 0 8px rgba(230, 33, 42, 0.4);
+    }
+    .timeline-line {
+        @apply absolute left-1/2 top-0 h-full w-0.5 bg-gameGold/20 -translate-x-1/2;
+    }
+    .timeline-dot {
+        @apply absolute left-1/2 top-0 w-4 h-4 rounded-full bg-gameRed border-4 border-gameDark -translate-x-1/2 z-10;
+    }
+    .note-popup {
+        @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-3xl bg-gameDark border-2 border-gameGold rounded-xl p-6 z-50 shadow-2xl shadow-gameRed/20 max-h-[80vh] overflow-y-auto;
+    }
+    .note-close {
+        @apply absolute top-4 right-4 text-gray-400 hover:text-gameRed transition-colors text-xl cursor-pointer;
+    }
+    .note-title {
+        @apply text-gameGold text-xl font-bold mb-4 pb-2 border-b border-gameGold/20;
+    }
+    .note-overlay {
+        @apply fixed inset-0 bg-black/80 backdrop-blur-sm z-40;
+    }
+    .pain-point-item {
+        @apply flex items-center gap-3 py-3 px-2 rounded-lg transition-all duration-200 cursor-pointer;
+    }
+    .pain-point-item:hover {
+        @apply bg-gameRed/10 text-gameRed;
+    }
+    .pain-point-item i {
+        @apply text-gameRed transition-colors w-6 text-center;
+    }
+    .pain-point-item:hover i {
+        @apply text-white;
+    }
+    .star-highlight {
+        @apply text-gameGold text-xs ml-1 animate-pulse;
+    }
+/* 弹窗表格样式 */
+.popup-table {
+    @apply w-full border-collapse my-4 text-sm;
+}
+.popup-table th {
+    @apply bg-gameGold/10 border border-gameGold/30 py-3 px-4 text-left text-gameGold;
+}
+.popup-table td {
+    @apply bg-gameGray/50 border border-gameGold/20 py-3 px-4 text-gray-300;
+}
+.popup-table tr:hover td {
+    @apply bg-gameGray/80;
+}
+.popup-note {
+    @apply bg-gameRed/10 border-l-4 border-gameRed p-3 my-4 text-gray-300 text-sm;
+}
+}
+    </style>
+</head>
+<body class="bg-gameDark text-white font-game overflow-x-hidden">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full bg-gameDark/80 backdrop-blur-md z-50 border-b border-gameGold/20">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-gameGold text-xl font-bold">庄才华 | 游戏策划培训生</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#hero" class="hover:text-gameRed transition-colors">首页</a>
+                <a href="#journey" class="hover:text-gameRed transition-colors">游戏经历</a>
+                <a href="#design-lab" class="hover:text-gameRed transition-colors">策划想法<i class="fas fa-star star-highlight"></i></a>
+                <a href="#projects" class="hover:text-gameRed transition-colors">跨界经验</a>
+            </div>
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden bg-gameGray px-6 py-4">
+            <div class="flex flex-col space-y-4">
+                <a href="#hero" class="hover:text-gameRed transition-colors">首页</a>
+                <a href="#journey" class="hover:text-gameRed transition-colors">游戏经历</a>
+                <a href="#design-lab" class="hover:text-gameRed transition-colors">策划想法<i class="fas fa-star star-highlight"></i></a>
+                <a href="#projects" class="hover:text-gameRed transition-colors">跨界经验</a>
+            </div>
+        </div>
+    </nav>
+
+<!-- 首屏 -->
+<section id="hero" class="section-height flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[66.67%] h-[70vh] max-h-[600px] z-10">
+        <div class="perspective-[800px] w-full h-full">
+            <div class="w-full h-full transform rotateY-35 transform-origin-left style:transform-style:preserve-3d; transition-transform 0.3s ease">
+                <div class="w-full h-full relative rounded-2xl overflow-hidden">
+                    <img src="image/主页.jpg" alt="游戏主题图" class="w-full h-full object-cover">
+                    <div class="absolute inset-0">
+                        <div class="absolute inset-0 bg-gradient-to-l from-transparent via-black/10 to-black/80"></div>
+                        <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black/50 backdrop-blur-[0px,_5px,_25px]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto relative z-20">
+        <div class="max-w-2xl space-y-8 mt-[-4rem]">
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow">
+                10年“老农民”<br>
+                <span class="text-gameGold">广告学×体验经济</span><br>
+                从峡谷的体验者<br>到游戏的策划师
+            </h1>
+            <p class="text-lg text-gray-300">
+                想要努力做到懂玩家、懂内容、懂商业化。
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <span class="px-4 py-2 bg-gameGray border border-gameGold/30 rounded-full">V10深氪玩家</span>
+                <span class="px-4 py-2 bg-gameGray border border-gameGold/30 rounded-full">20+赛季王者</span>
+                <span class="px-4 py-2 bg-gameGray border border-gameGold/30 rounded-full">KPL生态</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute left-1/2 bottom-4 -translate-x-1/2 z-30">
+        <a href="#journey" class="inline-block px-8 py-3 bg-gameRed text-white rounded-full hover:bg-gameRed/80 transition-colors">
+            我的游戏之路 ↓
+        </a>
+    </div>
+</section>
+
+<!-- 游戏经历 -->
+<section id="journey" class="min-h-screen px-6 py-12 bg-gameGray/50 flex items-center">
+    <div class="container mx-auto w-full">
+        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-center mb-8 text-gameGold">
+            我的游戏<span class="text-gameRed">体验</span>之旅
+        </h2>
+        
+        <div class="max-w-6xl mx-auto overflow-x-auto pb-8">
+            <div class="flex items-center justify-between min-w-[800px] md:min-w-[1000px] relative">
+                <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gameGold/20 -translate-y-1/2 z-0"></div>
+                
+                <div class="relative z-10 flex flex-col items-center w-1/4">
+                    <div class="w-6 h-6 rounded-full bg-gameRed border-4 border-gameDark mb-4"></div>
+                    <div class="bg-gameDark rounded-xl overflow-hidden w-48 h-36 mb-4">
+                        <img src="image/全民超神.jpg" alt="MOBA类游戏" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gameRed">MOBA手游</h3>
+                        <p class="text-gray-300 mt-2 text-sm md:text-base">
+                            接触《全民超神》<br>尝试《决战平安京》<br>坚持《王者荣耀》
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center w-1/4">
+                    <div class="w-6 h-6 rounded-full bg-gameRed border-4 border-gameDark mb-4"></div>
+                    <div class="bg-gameDark rounded-xl overflow-hidden w-48 h-36 mb-4">
+                        <img src="image/枪神.jpg" alt="FPS类游戏" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gameRed">FPS类游戏</h3>
+                        <p class="text-gray-300 mt-2 text-sm md:text-base">
+                            从CF端游到手游<br>从刺激战场到和平精英<br>从逆战到逆战·未来
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center w-1/4">
+                    <div class="w-6 h-6 rounded-full bg-gameRed border-4 border-gameDark mb-4"></div>
+                    <div class="bg-gameDark rounded-xl overflow-hidden w-48 h-36 mb-4">
+                        <img src="image/休闲.jpg" alt="休闲类游戏" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gameRed">休闲类游戏</h3>
+                        <p class="text-gray-300 mt-2 text-sm md:text-base">
+                            天天酷跑中氪到弃游<br>元梦之星开服体验<br>QQ飞车炫舞端游到手游
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center w-1/4">
+                    <div class="w-6 h-6 rounded-full bg-gameRed border-4 border-gameDark mb-4"></div>
+                    <div class="bg-gameDark rounded-xl overflow-hidden w-48 h-36 mb-4">
+                        <img src="image/麻将.jpg" alt="棋牌类游戏" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gameRed">棋牌类游戏</h3>
+                        <p class="text-gray-300 mt-2 text-sm md:text-base">
+                            腾讯欢乐麻将全集<br>欢乐斗地主<br>王者麻将·雀战不息
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4 max-w-2xl mx-auto">
+            <p class="text-gray-300 text-base">
+                十余年游戏历程，集中在手游领域，更集中在腾讯游戏版图中。<br>涉猎市面主流游戏类型，从普通玩家到<span class="text-gameGold font-semibold">体验观察</span>，有一定的取舍标准。
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 策划想法 -->
+<section id="design-lab" class="min-h-screen px-6 py-12 flex items-center">
+    <div class="container mx-auto w-full">
+        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-center mb-8 text-gameGold">
+            策划实验室 · <span class="text-gameRed">游戏拆解</span>
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div class="bg-gameGray/80 rounded-2xl p-6 border border-gameGold/20">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-user-secret text-gameRed text-2xl mr-4"></i>
+                    <h3 class="text-xl font-bold">基于玩家视角的体验洞察</h3>
+                </div>
+                <p class="text-gray-400 mb-4">核心痛点(个人部分感受)：</p>
+                <div class="space-y-1">
+                    <div class="pain-point-item" onclick="openNote('note1')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>评分体系：公开透明与对局生态的平衡难题</span>
+                    </div>
+                    <div class="pain-point-item" onclick="openNote('note3')">
+                        <i class="fas fa-coins"></i>
+                        <span>存量货币：老玩家溢出与体系价值稳定矛盾</span>
+                    </div>
+                    <div class="pain-point-item" onclick="openNote('note4')">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>辅助生态：单排的高风险与低反馈体验失衡</span>
+                    </div>
+                    <div class="pain-point-item" onclick="openNote('note5')">
+                        <i class="fas fa-users"></i>
+                        <span>分路匹配：位置冷热不均以及补位激励不足</span>
+                    </div>
+                    <div class="pain-point-item" onclick="openNote('note6')">
+                        <i class="fas fa-random"></i>
+                        <span>对局感知：人机特征明显与玩家信任度建设</span>
+                    </div>
+                    <div class="pain-point-item" onclick="openNote('note2')">
+                        <i class="fas fa-dice"></i>
+                        <span>王者麻将：节奏快慢和规则广度与定位冲突</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gameGray/80 rounded-2xl p-6 border border-gameGold/20">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-gem text-gameRed text-2xl mr-4"></i>
+                    <h3 class="text-xl font-bold">“暴击积分夺宝”活动拆解</h3>
+                </div>
+                <p class="text-white font-semibold mb-2">活动亮点：</p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300 mb-4">
+                    <li>精准定位高氪玩家，降低其收藏投入，形成有效吸引；</li>
+                    <li>通过暴击玩法，增强对于用户心理期待感的即时满足；</li>
+                    <li>小兵皮肤荣耀典藏兑换率较低，随机出奖可稀释这一现象；</li>
+                    <li>锚定春节限时营造稀缺，免费券降低门槛，拉动点券消费。</li>
+                </ul>
+                <p class="text-white font-semibold mb-2">待优化点：</p>
+                <ul class="list-disc list-inside space-y-2 text-gray-300 mb-4">
+                    <li>实际幸运值暴击期望较低，让玩家有明显的心理落差；</li>
+                    <li>进度冻结，下一活动时间未知，玩家冲动消费进程不顺；</li>
+                    <li>随机、券到时转化等信息不醒目，容易引起玩家的“后悔”；</li>
+                    <li>玩家攒的积分和夺宝券不能使用，造成“逼氪”声浪。</li>
+                </ul>
+                <a href="javascript:void(0)" class="inline-block text-gameRed hover:text-gameGold transition-colors text-sm" onclick="openNote('note7')">
+                    查看完整分析拆解（仅代表个人思考）→
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="noteOverlay" class="note-overlay hidden"></div>
+    <div id="notePopup" class="note-popup hidden">
+        <div class="note-close" onclick="closeNote()">
+            <i class="fas fa-times"></i>
+        </div>
+        <h3 id="notePopupTitle" class="note-title"></h3>
+        <div id="notePopupContent" class="text-gray-300 space-y-3 text-sm md:text-base"></div>
+    </div>
+</section>
+
+<!-- 跨界经验 -->
+<section id="projects" class="min-h-screen px-6 py-12 bg-gameGray/50 flex items-center">
+    <div class="container mx-auto w-full">
+        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-center mb-8 text-gameGold">
+           工作能力 · <span class="text-gameRed">跨界经验</span>
+        </h2>
+        
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+            <div class="bg-gameDark rounded-2xl overflow-hidden shadow-lg hover:shadow-gameRed/20 transition-shadow">
+                <img src="image/皮皮狐.jpg" alt="搜狐IP运营" class="w-full h-40 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gameRed mb-2">搜狐 | IP内容运营</h3>
+                    <p class="text-gray-300 mb-2 text-sm md:text-base">
+                        负责公司自创IP皮皮狐fox的创意内容策划，负责账号运营与线下展览，数据表现良好；参与集团大型文娱项目的策划与落地，作为市场部的一员深度统筹活动执行。
+                    </p>
+                    <div class="flex items-center text-white/80 text-sm">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        <span class="text-gameGold font-semibold">核心能力：用户生活与心理洞察、跨部门协作沟通</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gameDark rounded-2xl overflow-hidden shadow-lg hover:shadow-gameRed/20 transition-shadow">
+                <img src="image/综艺.jpg" alt="央视频策划" class="w-full h-40 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gameRed mb-2">央视频 | 热点策划</h3>
+                    <p class="text-gray-300 mb-2 text-sm md:text-base">
+                       国家级媒体等单位的经历不仅充分锻炼了我踏实认真的工作态度，也让我逐渐完成学生思维的蜕变，而综艺相关内容的制作参与也激发了我对休闲娱乐内容的创造热情。
+                    </p>
+                    <div class="flex items-center text-white/80 text-sm">
+                        <i class="fas fa-bullhorn mr-2"></i>
+                        <span class="text-gameGold font-semibold">核心能力：内容创造热情、严谨的系统性思维</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2 mt-4 text-center">
+                <p class="text-gray-300 max-w-3xl mx-auto text-base">
+                    我虽然没有直接的游戏行业实践经验，但<span class="text-gameGold font-semibold">央视、搜狐、字节等</span>丰富的实习让我具备了基本的优秀工作素质，<br>本科的传播学背景和硕士将攻读的体验经济领域知识也将让我进一步完备<span class="text-gameGold font-semibold">从玩家视角到商业任务的感知</span><br>即：既能以己度人理解玩家需求，也懂得内容质量与市场价值之间的最优平衡才是核心目标。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gameGray border-t border-gameGold/20 py-8 px-6">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400">庄才华 · 腾讯（天美）游戏策划实习生面试 | 联系我：Zcaihua43@outlook.com</p>
+            <p class="text-gray-500 text-sm mt-2">© 2026 基于热爱AI手搓</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+// 移动端菜单
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', function() {
+    mobileMenu.classList.toggle('hidden');
+    const icon = this.querySelector('i');
+    if (icon.classList.contains('fa-bars')) {
+        icon.classList.replace('fa-bars', 'fa-times');
+    } else {
+        icon.classList.replace('fa-times', 'fa-bars');
+    }
+});
+
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            const windowHeight = window.innerHeight;
+            const elementHeight = targetElement.offsetHeight;
+            let offsetTop = targetElement.offsetTop - 80;
+            if (targetId === '#journey' || targetId === '#design-lab' || targetId === '#projects') {
+                offsetTop = targetElement.offsetTop - (windowHeight - elementHeight) / 2;
+            }
+            
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+            if (menuBtn) {
+                const icon = menuBtn.querySelector('i');
+                if (icon.classList.contains('fa-times')) {
+                    icon.classList.replace('fa-times', 'fa-bars');
+                }
+            }
+        }
+    });
+});
+
+// 弹窗功能
+function openNote(noteId) {
+    const noteData = {
+        note1: {
+            title: "评分体系：公开透明与对局生态的平衡难题",
+            content: `
+                <p class="font-semibold text-white">玩家痛点：</p>
+                <p>对局评分及顶级、金银牌的计算不透明，玩家对结果模糊，甚至出现“出去看评分不要叫”的恶性局内对话；但如果完全公开KDA、推塔、视野、承伤等精确公式，又会导致玩家刻意刷数据、不牺牲、不参团、不探草，破坏团队协作与真实对局体验。</p>
+                <p class="font-semibold text-white mt-3">策划视角拆解：</p>
+                <p>现有评分是多维度综合评价：战绩、参团率、承伤、治疗、视野、经济、推进、防守、行为偏好等，但各分路权重不同。不透明 → 公平感知差、社区争议大；全透明 → 玩家行为功利化，辅助/坦克/开团型英雄体验进一步恶化。核心矛盾：透明度 ↔ 行为引导。</p>
+                <p class="font-semibold text-white mt-3">优化思路：</p>
+                <ul class="list-disc list-inside space-y-1 ml-2">
+                    <li>不公开精确公式，但公开分路评分维度与权重方向，让玩家更清楚分路玩法；</li>
+                    <li>结算页增加分项雷达图（基于算力和必要性，可考虑只针对高分段开放）；</li>
+                    <li>降低纯KDA权重，提高贡献、承伤、保护、视野等隐性游戏贡献权重；</li>
+                    <li>增加票选MVP/SVP，或改为“人气选手”的互动结算，提升玩家主观判断度。</li>
+                </ul>
+            `
+        },
+        note2: {
+            title: "王者麻将：节奏快慢和规则广度与定位冲突",
+            content: `
+                <p class="font-semibold text-white">玩家痛点：</p>
+                <p>王者麻将整体节奏偏慢，有棋牌经验的玩家觉得拖沓；新手又需要简单易上手。目前只做川麻换三张，覆盖用户不够全面；但如果规则过度丰富，又会变成内置“欢乐麻将全集”，偏离王者稷下学院休闲玩法主体生态。</p>
+                <p class="font-semibold text-white mt-3">策划视角拆解：</p>
+                <p>王者麻将的定位是轻度休闲副玩法，不是独立麻将产品。老手需求：快、刺激、番型丰富；新手需求：简单、门槛低、学习成本低。强行扩规则会带来：包体增大、维护成本上升、核心玩家认知混乱、喧宾夺主。</p>
+                <p class="font-semibold text-white mt-3">优化思路：</p>
+                <ul class="list-disc list-inside space-y-1 ml-2">
+                    <li>保留现有川麻换三张作为默认模式，可考虑增加简单的规则进阶；</li>
+                    <li>根据熟练度缩短出牌考虑时间，并增加发言歪的简单的道具互动；</li>
+                    <li>保持“轻量、快节奏、低学习成本”，贴合该玩法的整体定位。</li>
+                </ul>
+            `
+        },
+        note3: {
+            title: "存量货币：老玩家溢出与体系价值稳定矛盾",
+            content: `
+                <p class="font-semibold text-white">玩家痛点：</p>
+                <p>老玩家金币、钻石、碎片、王者水晶等道具长期严重溢出，失去追求；现有的“超级兑兑兑”力度太小，无法满足回收需求；但如果开放大额兑换，又会冲击货币价值体系，造成通胀与新老玩家差距失衡。</p>
+                <p class="font-semibold text-white mt-3">策划视角拆解：</p>
+                <p>免费货币是长期养成核心价值锚点。过度回收 → 货币贬值、新玩家追赶压力变大；完全不回收 → 老玩家无目标、活跃度下降、流失风险升高。</p>
+                <p class="font-semibold text-white mt-3">优化思路：</p>
+                <ul class="list-disc list-inside space-y-1 ml-2">
+                    <li>建立溢出货币定向回收活动，尽量只兑换不影响平衡的非战力资源（头像框、回城、播报、星币、玫瑰等）；</li>
+                    <li>采用限量、限时、周期性兑换，不无限量开放；</li>
+                    <li>加大王者商店奖池、社交属性功能道具产品的研发与推新。</li>
+                </ul>
+            `
+        },
+        note4: {
+            title: "辅助生态：单排的高风险与低反馈体验失衡",
+            content: `
+                <p class="font-semibold text-white">玩家痛点：</p>
+                <p>路人局辅助分路体验相对较差：单排几乎无沟通；探草、开团、扛伤等高风险行为缺乏队友配合，一旦失误就被指责“送人头”；但视野、保护、承伤等贡献又看不见，收益与付出严重不对等。</p>
+                <p class="font-semibold text-white mt-3">策划视角拆解：</p>
+                <p>辅助一定程度上是信息差最大、反馈最弱、风险最高的位置。路人局缺乏即时沟通 + 贡献不显性 + 评分不倾斜导致辅助玩家意愿持续走低。</p>
+                <p class="font-semibold text-white mt-3">优化思路：</p>
+                <ul class="list-disc list-inside space-y-1 ml-2">
+                    <li>进一步强化辅助行为可视化：探草成功、护盾、挡伤、救队友全局提示；</li>
+                    <li>持续优化新增一键战术指令：“我开团”“小心草”“请跟我”等；</li>
+                    <li>评分系统进一步合理优化提高视野价值、承伤、保护、控场权重；</li>
+                    <li>降低辅助因团队节奏不匹配、队友衔接不及时等造成的问题带来的误判扣分。</li>
+                </ul>
+            `
+        },
+        note5: {
+            title: "分路匹配：位置冷热不均以及补位激励不足",
+            content: `
+                <p class="font-semibold text-white">玩家痛点：</p>
+                <p>各分路人数差异大，热门路挤、冷门路排很久；“全能补位”奖励太低，玩家不愿为了团队放弃自己熟悉的位置；分路首选/次选机制不够合理，匹配体验与等待时长不均衡。</p>
+                <p class="font-semibold text-white mt-3">策划视角拆解：</p>
+                <p>玩家行为遵循收益驱动：补位收益 << 玩强势位置收益 → 理性选择不补位。系统仅靠软引导无法改变结构失衡。</p>
+                <p class="font-semibold text-white mt-3">优化思路：</p>
+                <ul class="list-disc list-inside space-y-1 ml-2">
+                    <li>提高全能补位阶梯奖励：勇者积分、保星、金币、称号、限时特效；</li>
+                    <li>优化分路偏好机制：首选/次选/补位三层结构，降低强制补位概率；</li>
+                    <li>局内分路交互新增额外机制：提出者与接受方的勇者积分结算增减；</li>
+                                    </ul>
+            `
+        },
+        note6: {
+            title: "匹配感知：人机特征明显与玩家信任度建设",
+            content: `
+                <p class="font-semibold text-white">玩家痛点：</p>
+                <p>人机局、福利局、胜负局特征过于明显：ID系统感强、不发言、主页空白、行为僵硬，导致社区大量负面舆论，质疑公平性，影响整体游戏信任氛围。</p>
+                <p class="font-semibold text-white mt-3">策划视角拆解：</p>
+                <p>为了匹配速度与胜率平滑，项目普遍存在机器人填充 + ELO调节，但官方不会承认“强制胜负”。玩家真正反感的不是机制，而是被明显当作“机器人对手”，体验不被尊重。</p>
+                <p class="font-semibold text-white mt-3">优化思路：</p>
+                <ul class="list-disc list-inside space-y-1 ml-2">
+                    <li>机器人全面拟人化：使用真实闲置账号、头像、昵称、历史战绩；</li>
+                    <li>增加简易快捷语，降低机器感；</li>
+                    <li>优化胜负波动曲线，减少极端碾压/被碾压局；</li>
+                    <li>对外不承认、不否认、不辩解，只持续输出“优化匹配体验”。</li>
+                </ul>
+            `
+        },
+note7: {
+    title: "王者荣耀“暴击积分夺宝”活动拆解",
+    content: `
+        <p class="font-semibold text-white">一、活动核心机制</p>
+        <table class="popup-table">
+            <thead>
+                <tr>
+                    <th>维度</th>
+                    <th>暴击积分夺宝核心规则</th>
+                    <th>与常规积分夺宝关键差异</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>参与</td>
+                    <td>仅支持点券购买专属券（首抽5折30点券，后续48点券/张），登录领20张免费券，未用券1:1转化为常规夺宝券。</td>
+                    <td>不互通常规荣耀积分和夺宝券，无其他免费兑换通道。</td>
+                </tr>
+                <tr>
+                    <td>暴击</td>
+                    <td>每次抽奖分+1/+2/+5/+10点幸运值暴击档位（30.3%/8%/1.5%/0.2%），平均额外+0.558点，享三倍基础爆率。</td>
+                    <td>无暴击，幸运值线性+1。</td>
+                </tr>
+                <tr>
+                    <td>保底</td>
+                    <td>360抽保底随机典藏，进度保留至下期限时活动（时间未知），本期活动结束后进度冻结，且夺宝券不继承。</td>
+                    <td>361抽保底自选水晶，进度常驻无冻结。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="popup-note">
+            关键争议：宣传“36抽理论保底”为理想值，实际平均保底250抽左右，与宣传落差大，是玩家投诉核心。
+        </div>
+
+        <p class="font-semibold text-white mt-4">二、玩家视角核心体验（分人群）</p>
+        <ul class="list-disc list-inside space-y-1 ml-2">
+            <li><strong>核心氪佬</strong>：①成本优化感知明显：三倍基础爆率+幸运值暴击机制，理论上可大幅缩短保底周期，平均250抽保底（约1100元），比常规积分夺宝保底（361抽，约1440元）节省约24%，补全剩余典藏的成本更低；首购5折、五连8折（上限200次）进一步降低前期投入成本。②进度与权益适配：已拥有全部典藏的氪佬，保底必出荣耀水晶，可加速水晶收集，契合其“全图鉴、高收藏”的核心需求。③情绪反馈充足：10倍暴击带来强烈的惊喜感和炫耀感，打破常规夺宝的线性枯燥，满足氪佬的“欧气展示”需求。</li>
+            <li><strong>中端玩家</strong>：①免费券零成本试错，碎片系统提升资源利用率。②三倍暴率+暴击机制满足其“低成本冲典藏”的诉求，但仅支持点券硬氪，性价比低；</li>
+            <li><strong>零氪玩家</strong>：①纯福利获取：免费领20张券（大多等活动结束转化为普通夺宝券）。②低门槛参与，满足“碰运气”的心理，但无额外参与渠道，抽到核心奖励概率极低。</li>
+            <li><strong><span class="text-gameGold font-semibold">全人群槽点</span></strong>：①信息误导（与常规夺宝界面相似）：未醒目提示随机出奖。②小兵皮肤受欢迎程度低，与玩家心理预期违背。③系统规则较为繁琐难理解，消费链路不清晰。④概率信任危机：实际爆率、暴击率与用户预期不符，让玩家落差较大。</li>
+        </ul>
+
+        <p class="font-semibold text-white mt-4">三、策划视角：优点与不足</p>
+        <ul class="list-disc list-inside space-y-1 ml-2">
+            <li><strong>核心优点</strong>：<br>①增量付费设计精准，兼顾存量营收：独立暴击夺宝券种，不互通常规积分夺宝资源，创造纯增量流水，避免侵蚀常规积分夺宝的长期营收；同时，首抽5折、免费20张券降低参与门槛，刺激首充和轻度付费，实现“常驻池稳收、限时池爆发”的营收结构，契合春节短期营收爆发的目标。<br>②概率机制优化，提升活动趣味性：暴击机制通过“小频次、高波动”的幸运值增长，替代常规夺宝的线性进度，增强抽奖过程中的情绪起伏和期待感，打破传统夺宝的枯燥感，提升玩家参与时长和重复抽奖意愿；三倍爆率的宣传的，进一步放大“惊喜感”，吸引玩家参与。<br>③用户分层运营，覆盖全人群：<br>￮氪佬层：“暴击+三倍爆率”，全典藏玩家保底必出水晶，加速全图鉴收集，契合其高付费、高收藏需求，提升付费转化率。<br>￮中端玩家层：免费券+夺宝盒碎片系统，降低参与门槛，同时通过“随机性”刺激其小额付费，培养付费习惯。<br>￮零氪层：免费券提供参与感，让其感受春节活动氛围，提升活动渗透率，同时通过券转化规则，将零氪玩家引流至常规积分夺宝，为长期付费埋下伏笔。<br>④长期价值延伸，提升重复参与意愿：夺宝盒碎片系统将单次抽奖的短期价值，延伸至长期收藏（典藏级特效），让非核心奖励也能产生价值，避免玩家因抽到低价值奖励而彻底放弃活动，提升重复参与和持续付费的可能性。<br>⑤活动节奏把控合理，降低玩家抵触：限时开放（核心期仅9天）制造“稀缺感”，倒逼有需求的玩家及时付费；活动结束后未用券1:1转化为常规积分夺宝券，避免玩家因“券过期浪费”产生抵触情绪，提升活动口碑。<br>⑥资源高效利用，控制研发成本：将小兵皮肤作为奖励池填充，既丰富了奖励种类，又无需额外投入大量研发成本，同时通过“低价值奖励”区分核心奖励与次要奖励，突出典藏皮肤和水晶的稀缺性，强化核心奖励的吸引力。</li>
+            <li><strong>核心不足</strong>：“短期营收爆发目标”与玩家的“长期价值预期”存在核心冲突：为了快速拉动春节期间的点券消耗，策划设计了“随机保底、限时进度、独立券种”等机制，最大化短期付费转化；但这些机制牺牲了玩家的安全感、获得感和权益一致性，导致活动后期投诉增多、口碑下滑，甚至影响玩家对常规积分夺宝的信任，不利于长期生态建设。同时，“宣传噱头”与“实际体验”的落差，进一步加剧了矛盾，导致活动的“短期收益”与“长期口碑”失衡。</li>
+        </ul>
+
+        <p class="font-semibold text-white mt-4">四、优化策略</p>
+        <ul class="list-disc list-inside space-y-1 ml-2">
+            <strong>1.信息透明化，消除认知误导</strong>：<br>￮进入活动时弹出醒目弹窗，强制提示核心要点：“本活动保底为随机典藏”“与常规积分夺宝幸运值、道具不互通”，避免玩家误充。<br>￮活动界面新增“概率公示”板块，明确标注各档位暴击概率、各奖励（典藏、武则天、小兵皮肤）的具体产出概率，以及“全收集后保底出水晶”的条件。<br><strong>2.优化奖励与暴击机制，提升获得感</strong>：<br>￮优化暴击概率分布：适当提升+5点、+10点暴击的概率，降低+1点暴击的概率，让玩家更易感知“加速保底”的效果，增强活动吸引力。<br>￮降低小兵皮肤在保底中的概率，保底时优先产出未拥有的典藏皮肤/武则天，仅当玩家已拥有所有核心奖励时，才产出小兵皮肤，减少负面情绪。<br><strong>3.优化进度与权益，给予玩家安全感</strong>：<br>￮明确公示下一次暴击夺宝的大致时间（如“2026年暑期档”），活动结束时弹窗提示进度保留规则，消除“进度石沉大海”的焦虑。<br>￮新增“进度兑换”功能：玩家可选择将当前暴击夺宝进度，按5:1的比例兑换为常规积分夺宝进度，允许玩家灵活止损，提升满意度。<br><strong>4.降低碎片兑换门槛</strong>：<br>调整夺宝碎片兑换比例，将史诗皮肤兑换所需碎片降至1500片（约150抽），同时提升碎片获取效率（如单次分解小兵皮肤可获得更多碎片），增强夺宝盒系统的吸引力。<br><strong>5.新增阶梯奖励</strong>：<br>每60/120/180抽设置阶段性奖励（如专属头像框、表情、夺宝碎片），缓解保底前的空虚感，提升玩家持续参与的动力。
+        </ul>
+    `
+}
+    };
+
+    document.getElementById('notePopupTitle').innerHTML = noteData[noteId].title;
+    document.getElementById('notePopupContent').innerHTML = noteData[noteId].content;
+    
+    document.getElementById('noteOverlay').classList.remove('hidden');
+    document.getElementById('notePopup').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeNote() {
+    document.getElementById('noteOverlay').classList.add('hidden');
+    document.getElementById('notePopup').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+document.getElementById('noteOverlay').addEventListener('click', closeNote);
+document.getElementById('notePopup').addEventListener('click', function(e) {
+    e.stopPropagation();
+});
+    </script>
+</body>
+</html>
